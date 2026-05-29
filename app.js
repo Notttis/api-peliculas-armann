@@ -56,6 +56,9 @@ app.delete('/peliculas/:id', validarToken, async (req, res) => {
     } else res.status(404).send("No existe esa película");
 });
 
+app.get('/', async (req, res) => {
+    res.send('Api funcionando');
+});
 
 
 const PORT = process.env.PORT || 3000;
