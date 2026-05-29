@@ -1,5 +1,5 @@
 const express = require('express');
-const db = require('./db');
+const sequelize = require('./db'); 
 const Pelicula = require('./modules/Pelicula');
 const jwt = require('jsonwebtoken');
 // Importamos el nuevo guardia (JWT) y el viejo (ApiKey) si lo sigues usando
@@ -57,6 +57,9 @@ app.delete('/peliculas/:id', validarToken, async (req, res) => {
 });
 
 
-db.sync().then(() => {
-    app.listen(3000, () => console.log("¡Listo! Tu API con JWT funciona en el puerto 3000"));
+
+const PORT = process.env.PORT || 3000;
+
+sequelize.sync().then(() => {
+    app.listen(PORT, () => console.log(`¡Listo! Tu API funciona en el puerto ${PORT}`));
 });
